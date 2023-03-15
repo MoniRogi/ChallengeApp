@@ -1,72 +1,45 @@
-﻿// Zadanie domowe nr 5
-int number = 4566;
+﻿// Zadanie domowe nr 6
 
-string numberInString = number.ToString();
-char[] digits = numberInString.ToArray();
-string line = "W liczbie 4566 występuje następująca ilość cyfr:";
-Console.WriteLine(line);
+using ChallengeApp;
 
-int counter0 = 0;
-int counter1 = 0;
-int counter2 = 0;
-int counter3 = 0;
-int counter4 = 0;
-int counter5 = 0;
-int counter6 = 0;
-int counter7 = 0;
-int counter8 = 0;
-int counter9 = 0;
+Employee employee1 = new Employee("Monika", "Rogalska",16);
+Employee employee2 = new Employee("Anna", "Owczarek", 24);
+Employee employee3 = new Employee("Oskar","Kowalski",35);
 
-foreach (char letter in digits)
+employee1.AddScore(3);
+employee1.AddScore(4);
+employee1.AddScore(1);
+employee3.AddScore(7);
+employee3.AddScore(10);
+
+employee2.AddScore(5);
+employee2.AddScore(1);
+employee2.AddScore(8);
+employee1.AddScore(4);
+employee1.AddScore(6);
+
+employee3.AddScore(0);
+employee3.AddScore(9);
+employee3.AddScore(2);
+employee2.AddScore(1);
+employee2.AddScore(8);
+
+
+List<Employee> employees = new List<Employee>()
+{ employee1, employee2, employee3 };
+
+int maxResult = -1;
+Employee employeeWithMaxResult = null;
+
+foreach(var Employee in employees)
 {
-    if (letter == '0')
-    {
-        counter0++;
-    }
-    else if (letter == '1')
-    {
-        counter1++;
-    }
-    else if (letter == '2')
-    {
-        counter2++;
-    }
-    else if (letter == '3')
-    {
-        counter3++;
-    }
-    else if (letter == '4')
-    {
-        counter4++;
-    }
-    else if (letter == '5')
-    {
-        counter5++;
-    }
-    else if (letter == '6')
-    {
-        counter6++;
-    }
-    else if (letter == '7')
-    {
-        counter7++;
-    }
-    else if (letter == '8')
-    {
-        counter8++;
-    }
-    else if (letter == '9')
-    {
-        counter9++;
-    }
+    if(Employee.Result > maxResult)
+    
+    employeeWithMaxResult = Employee;
+    maxResult = Employee.Result;
 }
-Console.WriteLine("0 => " + counter0);
-Console.WriteLine("1 => " + counter1);
-Console.WriteLine("2 => " + counter2);
-Console.WriteLine("3 => " + counter3);
-Console.WriteLine("4 => " + counter4);
-Console.WriteLine("5 => " + counter5);
-Console.WriteLine("6 => " + counter6);
-Console.WriteLine("7 => " + counter7);
-Console.WriteLine("8 => " + counter8);
-Console.WriteLine("9 => " + counter9);
+
+
+Console.WriteLine("Najlepszy pracownik miesiąca: ");
+Console.WriteLine("Imię => " + employeeWithMaxResult.Name + "; Nazwisko => " + employeeWithMaxResult.Surname + "; Wiek => " + employeeWithMaxResult.Age + "; Maxymalna liczba punktów: " + maxResult );
+Console.WriteLine("Gratulujemy!");
