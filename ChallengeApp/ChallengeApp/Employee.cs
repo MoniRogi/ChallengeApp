@@ -1,7 +1,7 @@
 ﻿
 namespace ChallengeApp
 {
-    internal class Employee
+    public class Employee
     {
         private List<int> score = new List<int>();
         public Employee(string name, string surname, int age)
@@ -26,9 +26,9 @@ namespace ChallengeApp
         }
 
 
-        public void AddScore(int score)
+        public void AddScore(int number)
         {
-            this.score.Add(score);
+            this.score.Add(number);
         }
     }
 }

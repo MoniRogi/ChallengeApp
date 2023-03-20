@@ -9,20 +9,20 @@ Employee employee3 = new Employee("Oskar","Kowalski",35);
 employee1.AddScore(3);
 employee1.AddScore(4);
 employee1.AddScore(1);
-employee3.AddScore(7);
-employee3.AddScore(10);
+employee1.AddScore(7);
+employee1.AddScore(10);
 
 employee2.AddScore(5);
 employee2.AddScore(1);
 employee2.AddScore(8);
-employee1.AddScore(4);
-employee1.AddScore(6);
+employee2.AddScore(4);
+employee2.AddScore(6);
 
 employee3.AddScore(0);
 employee3.AddScore(9);
 employee3.AddScore(2);
-employee2.AddScore(1);
-employee2.AddScore(8);
+employee3.AddScore(1);
+employee3.AddScore(8);
 
 
 List<Employee> employees = new List<Employee>()
@@ -31,12 +31,14 @@ List<Employee> employees = new List<Employee>()
 int maxResult = -1;
 Employee employeeWithMaxResult = null;
 
-foreach(var Employee in employees)
+foreach (var Employee in employees)
 {
-    if(Employee.Result > maxResult)
-    
-    employeeWithMaxResult = Employee;
-    maxResult = Employee.Result;
+    if (Employee.Result > maxResult)
+    {
+
+        employeeWithMaxResult = Employee;
+        maxResult = Employee.Result;
+    }
 }
 
 
