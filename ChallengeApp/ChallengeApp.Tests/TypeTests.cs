@@ -23,7 +23,7 @@ namespace EmployeeTests
         }
         private Employee GetEmployee(string name, string surname, int age)
         {
-            return new Employee(name, surname, age);
+            return new Employee(name, surname);
         }
 
 
