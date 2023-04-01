@@ -3,7 +3,7 @@
 using ChallengeApp;
 
 var employee = new Employee("Monika", "Boratyn");
-employee.AddGrade(3);
+employee.AddGrade("5000");
 employee.AddGrade(6);
 employee.AddGrade(10);
 var statistics = employee.GetStatistics();

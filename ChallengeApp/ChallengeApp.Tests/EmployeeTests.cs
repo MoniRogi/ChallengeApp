@@ -28,7 +28,7 @@ namespace EmployeeTests
             //assert
             Assert.AreEqual(-7, statistics.Min);
             Assert.AreEqual(10, statistics.Max);
-            Assert.AreEqual(0.600000024f, statistics.Average);
+            Assert.AreEqual(Math.Round(0.6,2), Math.Round(statistics.Average,2));
             Assert.AreNotEqual(statistics.Min, statistics.Max);
 
         }
