@@ -27,7 +27,43 @@ namespace EmployeeTests
             Assert.AreEqual(100, statistics.Average);
 
         }
-        
 
+        [Test]
+        public void WriteNumberValue_ShouldReturnAverage()
+        {
+            var employee = new Employee("Monika", "Rogiñska");
+            employee.AddGrade(30);
+            employee.AddGrade(80);
+            employee.AddGrade(100);
+
+
+            var statistics = employee.GetStatistics();
+            Assert.AreEqual(70, statistics.Average);
+        }
+        [Test]
+        public void AverageValueUnderLetterTestByChar()
+        {
+            var employee = new Employee("Monika", "Rogiñska");
+            employee.AddGrade(35);
+            employee.AddGrade(67);
+            employee.AddGrade(23);
+
+
+            var statistics = employee.GetStatistics();
+            Assert.AreEqual('C', statistics.AverageLetter);
+        }
+
+        [Test]
+        public void GetMinStatisticsValue()
+        {
+            var employee = new Employee("Monika", "Rogiñska");
+            employee.AddGrade('C');
+            employee.AddGrade('d');
+            employee.AddGrade('A');
+
+
+            var statistics = employee.GetStatistics();
+            Assert.AreEqual(40, statistics.Min);
+        }
     }
 }
