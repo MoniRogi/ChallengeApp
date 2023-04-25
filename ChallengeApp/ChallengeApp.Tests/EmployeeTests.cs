@@ -13,12 +13,10 @@ namespace EmployeeTests
 
             //arrange
 
-            var employee = new Employee("Monika", "Rogalska");
-            employee.AddGrade(3);
-            employee.AddGrade(-4);
-            employee.AddGrade(1);
-            employee.AddGrade(-7);
-            employee.AddGrade(10);
+            var employee = new Employee("Monika", "Rogiñska");
+            employee.AddGrade('a');
+            employee.AddGrade("100");
+            employee.AddGrade(100);
 
             //act
 
@@ -26,11 +24,10 @@ namespace EmployeeTests
 
 
             //assert
-            Assert.AreEqual(-7, statistics.Min);
-            Assert.AreEqual(10, statistics.Max);
-            Assert.AreEqual(Math.Round(0.6,2), Math.Round(statistics.Average,2));
-            Assert.AreNotEqual(statistics.Min, statistics.Max);
+            Assert.AreEqual(100, statistics.Average);
 
         }
+        
+
     }
 }
