@@ -15,7 +15,15 @@ var employee = new Employee(name, surname);
 Console.WriteLine("Podaj ocenę pracownika: ");
 
 var input = Console.ReadLine();
-employee.AddGrade(input);
+
+try
+{
+    employee.AddGrade(input);
+}
+catch (Exception e)
+{
+    Console.WriteLine($"Exception catched: {e.Message}");
+}
 
 while (true)
 {
@@ -26,10 +34,20 @@ while (true)
         Console.WriteLine("Oto wyniki podanego pracownika: "); 
         break;        
     }
-    employee.AddGrade(input);
+
+    try
+    {
+        employee.AddGrade(input);
+    }
+    catch (Exception e)
+    {
+        Console.WriteLine($"Exception catched: {e.Message}");
+    }
+  
 }
 
 var ststistics = employee.GetStatistics();
 Console.WriteLine($"Average: {ststistics.Average}");
 Console.WriteLine($"Min: {ststistics.Min}");
 Console.WriteLine($"Max: {ststistics.Max}");
+Console.WriteLine($"AverageLetter: {ststistics.AverageLetter}");

@@ -10,7 +10,7 @@ namespace ChallengeApp
         {
             this.Name = name;
             this.Surname = surname;
-
+           
         }
 
         public string Name { get; private set; }
@@ -27,7 +27,7 @@ namespace ChallengeApp
             }
             else
             {
-                Console.WriteLine("invalid grade value");
+                throw new Exception("invalid grade value");
             }
         }
         public void AddGrade(double grade)
@@ -68,8 +68,7 @@ namespace ChallengeApp
                     this.grades.Add(20);
                     break;
                 default:
-                    Console.WriteLine("Wrong Letter");
-                    break;
+                    throw new Exception("Wrong Letter");
             }
         }
 
@@ -79,14 +78,15 @@ namespace ChallengeApp
             {
                 this.AddGrade(result);
             }
+            else if (char.TryParse(grade, out char res))
+            {
+                this.AddGrade(res);
+            }
             else
             {
-                Console.WriteLine("String is not folat");
+                throw new Exception("String is not float or char");
             }
         }
-
-
-
 
         public Statistics GetStatistics()
         {
