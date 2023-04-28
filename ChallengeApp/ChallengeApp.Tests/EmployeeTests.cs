@@ -13,7 +13,7 @@ namespace EmployeeTests
 
             //arrange
 
-            var employee = new Employee("Monika", "Rogiñska");
+            var employee = new Employee("Monika", "Rogiñska", "K");
             employee.AddGrade('a');
             employee.AddGrade("100");
             employee.AddGrade(100);
@@ -31,7 +31,7 @@ namespace EmployeeTests
         [Test]
         public void WriteNumberValue_ShouldReturnAverage()
         {
-            var employee = new Employee("Monika", "Rogiñska");
+            var employee = new Employee("Monika", "Rogiñska", "K");
             employee.AddGrade(30);
             employee.AddGrade(80);
             employee.AddGrade(100);
@@ -43,7 +43,7 @@ namespace EmployeeTests
         [Test]
         public void AverageValueUnderLetterTestByChar()
         {
-            var employee = new Employee("Monika", "Rogiñska");
+            var employee = new Employee("Monika", "Rogiñska", "K");
             employee.AddGrade(35);
             employee.AddGrade(67);
             employee.AddGrade(23);
@@ -56,7 +56,7 @@ namespace EmployeeTests
         [Test]
         public void GetMinStatisticsValue()
         {
-            var employee = new Employee("Monika", "Rogiñska");
+            var employee = new Employee("Monika", "Rogiñska", "K");
             employee.AddGrade('C');
             employee.AddGrade('d');
             employee.AddGrade('A');

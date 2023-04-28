@@ -8,12 +8,14 @@ Console.WriteLine();
 Console.WriteLine("Podaj dane pracownika: ");
 Console.WriteLine("Wpisz imię: ");
 var name = Console.ReadLine();
-Console.WriteLine("Wpisz nazwisko ");
+Console.WriteLine("Wpisz nazwisko: ");
 var surname = Console.ReadLine();
+Console.WriteLine("Wpisz płeć (K/M): ");
+var sex = Console.ReadLine();
 
-var employee = new Employee(name, surname);
+var employee = new Employee(name, surname, sex);
+
 Console.WriteLine("Podaj ocenę pracownika: ");
-
 var input = Console.ReadLine();
 
 try
