@@ -23,14 +23,29 @@
 
         public override void AddGrade(double grade)
         {
-            float gradeIsFloat = (float)grade;
-            this.AddGrade(gradeIsFloat); 
+            float gradeAsFloat = (float)grade;
+            this.AddGrade(gradeAsFloat); 
         }
 
         public override void AddGrade(int grade)
         {
-            float gradeIsFloat = grade;
-            this.AddGrade(gradeIsFloat);
+            float gradeAsFloat = grade;
+            this.AddGrade(gradeAsFloat);
+        }
+        public override void AddGrade(string grade)
+        {
+            if (float.TryParse(grade, out float result))
+            {
+                this.AddGrade(result);
+            }
+            else if (char.TryParse(grade, out char res))
+            {
+                this.AddGrade(res);
+            }
+            else
+            {
+                throw new Exception("String is not float or char");
+            }
         }
 
         public override void AddGrade(char grade)
@@ -62,21 +77,7 @@
             }
         }
 
-        public override void AddGrade(string grade)
-        {
-            if (float.TryParse(grade, out float result))
-            {
-                this.AddGrade(result);
-            }
-            else if (char.TryParse(grade, out char res))
-            {
-                this.AddGrade(res);
-            }
-            else
-            {
-                throw new Exception("String is not float or char");
-            }
-        }
+      
 
         public override Statistics GetStatistics()
         {

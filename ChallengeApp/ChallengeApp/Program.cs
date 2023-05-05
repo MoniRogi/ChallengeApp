@@ -15,10 +15,10 @@ Console.WriteLine("Podaj dane pracownika: ");
 
 var employee = new EmployeeInFile("Monika", "hhg", "k");
 
-employee.AddGrade("5");
-employee.AddGrade("A");
-employee.AddGrade("e");
+employee.AddGrade(5);
+employee.AddGrade('e');
 employee.AddGrade("45");
+employee.AddGrade('B');
 
 Console.WriteLine();
 var statisticsEmployeeInFile = employee.GetStatistics();

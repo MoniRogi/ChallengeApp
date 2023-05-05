@@ -2,7 +2,7 @@
 {
     public class EmployeeInFile : EmployeeBase
     {
-        private const string filename = "grades.txt";
+        private const string fileName = "grades.txt";
         public EmployeeInFile(string name, string surname, string sex)
             : base(name, surname, sex)
         {
@@ -10,7 +10,7 @@
 
         public override void AddGrade(float grade)
         {
-            using (var writer = File.AppendText(filename))
+            using (var writer = File.AppendText(fileName))
             {
                 if (grade >= 0 && grade <= 100)
 
@@ -27,45 +27,71 @@
 
         public override void AddGrade(double grade)
         {
-            using (var writer = File.AppendText(filename))
+            float gradeAsFloat = (float)grade;
+            using (var writer = File.AppendText(fileName))
             {
-                writer.WriteLine(grade);
+                writer.WriteLine(gradeAsFloat);
             }
         }
 
         public override void AddGrade(int grade)
         {
-            using (var writer = File.AppendText(filename))
+            float gradeAsFloat = (float)grade;
+            using (var writer = File.AppendText(fileName))
             {
-                writer.WriteLine(grade);
+                writer.WriteLine(gradeAsFloat);
             }
         }
+        public override void AddGrade(string grade)
+        {
+            if (float.TryParse(grade, out float result))
+            {
 
+                using (var writer = File.AppendText(fileName))
+                {
+                    writer.WriteLine(grade);
+                }
+
+            }
+            else if (char.TryParse(grade, out char res))
+            {
+
+                using (var writer = File.AppendText(fileName))
+                {
+                    writer.WriteLine(grade);
+                }
+
+            }
+            else
+            {
+                throw new Exception("String is not float or char");
+            }
+        }
         public override void AddGrade(char grade)
         {
-            using (var writer = File.AppendText(filename))
+            using (var writer = File.AppendText(fileName))
             {
                 switch (grade)
                 {
                     case 'A':
                     case 'a':
-                        this.AddGrade(100);
+                        writer.WriteLine(100);
                         break;
                     case 'B':
                     case 'b':
-                        this.AddGrade(80);
+                        writer.WriteLine(80);
                         break;
                     case 'C':
                     case 'c':
-                        this.AddGrade(60);
+                        writer.WriteLine(60);
                         break;
                     case 'D':
                     case 'd':
-                        this.AddGrade(40);
+                        writer.WriteLine(40); 
                         break;
                     case 'E':
                     case 'e':
-                        this.AddGrade(20);
+                        writer.WriteLine(20);
                         break;
                     default:
                         throw new Exception("Wrong Letter");
@@ -74,28 +100,7 @@
 
         }
 
-        public override void AddGrade(string grade)
-        {
-            if (float.TryParse(grade, out float result))
-            {
-                using (var writer = File.AppendText(filename))
-                {
-                    writer.WriteLine(result);
-                }
-            }
-            else if (char.TryParse(grade, out char res))
-            {
-                using (var writer = File.AppendText(filename))
-                {
-                    writer.WriteLine(res);
-                }
-            }
-            else
-            {
-                throw new Exception("String is not float or char");
-            }
-        }
-
+      
         public override Statistics GetStatistics()
         {
             var gradesFromFile = this.ReadGradesFromFile();
@@ -106,24 +111,23 @@
         private List<float> ReadGradesFromFile()
         {
             var grades = new List<float>();
-            if (File.Exists($"{filename}"))
+            if (File.Exists($"{fileName}"))
             {
 
-                using (var reader = File.OpenText($"{filename}"))
+                using (var reader = File.OpenText($"{fileName}"))
                 {
                     var line = reader.ReadLine();
                     while (line != null)
                     {
-                        var number = float.Parse(line);
+                        var number = float.Parse(line);                        
                         grades.Add(number);
                         line = reader.ReadLine();
                     }
-
                 }
             }
             return grades;
         }
-        private List<float> CountStatistics(List<float> grades)
+        private Statistics CountStatistics(List<float> grades)
         {
             var statistics = new Statistics();
             statistics.Average = 0;
