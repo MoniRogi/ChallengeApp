@@ -2,6 +2,8 @@
 {
     public class EmployeeInFile : EmployeeBase
     {
+        public override event GradeAddedDelegate GradeAdded;
+
         private const string fileName = "grades.txt";
         public EmployeeInFile(string name, string surname, string sex)
             : base(name, surname, sex)
@@ -10,19 +12,26 @@
 
         public override void AddGrade(float grade)
         {
-            using (var writer = File.AppendText(fileName))
-            {
-                if (grade >= 0 && grade <= 100)
 
+            if (grade >= 0 && grade <= 100)
+            {
+                using (var writer = File.AppendText(fileName))
                 {
                     writer.WriteLine(grade);
                 }
 
-                else
+                if (GradeAdded != null)
                 {
-                    throw new Exception("invalid grade value");
+                    GradeAdded(this, new EventArgs());
                 }
+
             }
+
+            else
+            {
+                throw new Exception("invalid grade value");
+            }
+
         }
 
         public override void AddGrade(double grade)
@@ -87,7 +96,7 @@
                         break;
                     case 'D':
                     case 'd':
-                        writer.WriteLine(40); 
+                        writer.WriteLine(40);
                         break;
                     case 'E':
                     case 'e':
@@ -100,7 +109,7 @@
 
         }
 
-      
+
         public override Statistics GetStatistics()
         {
             var gradesFromFile = this.ReadGradesFromFile();
@@ -119,7 +128,7 @@
                     var line = reader.ReadLine();
                     while (line != null)
                     {
-                        var number = float.Parse(line);                        
+                        var number = float.Parse(line);
                         grades.Add(number);
                         line = reader.ReadLine();
                     }

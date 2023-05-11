@@ -13,19 +13,24 @@ Console.WriteLine("Podaj dane pracownika: ");
 //Console.WriteLine("Wpisz płeć (K/M): ");
 //var sex = Console.ReadLine();
 
-var employee = new EmployeeInFile("Monika", "hhg", "k");
+var employee = new EmployeeInMemory("Monika", "hhg", "k");
+employee.GradeAdded += EmployeeGradeAdded;
 
-employee.AddGrade(5);
-employee.AddGrade('e');
-employee.AddGrade("45");
-employee.AddGrade('B');
+void EmployeeGradeAdded(object sender, EventArgs args)
+{
+    Console.WriteLine("Dodano nnową ocenę");
+}
 
-Console.WriteLine();
-var statisticsEmployeeInFile = employee.GetStatistics();
-Console.WriteLine($"Average: {statisticsEmployeeInFile.Average}");
-Console.WriteLine($"Min: {statisticsEmployeeInFile.Min}");
-Console.WriteLine($"Max: {statisticsEmployeeInFile.Max}");
-Console.WriteLine($"AverageLetter: {statisticsEmployeeInFile.AverageLetter}");
+employee.GradeAdded -= EmployeeGradeAdded;
+
+employee.AddGrade(0.6f);
+
+//Console.WriteLine();
+//var statisticsEmployeeInFile = employee.GetStatistics();
+//Console.WriteLine($"Average: {statisticsEmployeeInFile.Average}");
+//Console.WriteLine($"Min: {statisticsEmployeeInFile.Min}");
+//Console.WriteLine($"Max: {statisticsEmployeeInFile.Max}");
+//Console.WriteLine($"AverageLetter: {statisticsEmployeeInFile.AverageLetter}");
 
 //Console.WriteLine("Podaj ocenę pracownika: ");
 //var input = Console.ReadLine();
@@ -39,29 +44,29 @@ Console.WriteLine($"AverageLetter: {statisticsEmployeeInFile.AverageLetter}");
 //    Console.WriteLine($"Exception catched: {e.Message}");
 //}
 
-//while (true)
-//{
-//    Console.WriteLine("Podaj kolejną ocenę pracownika (jeśli chcesz wyjść naciśnij 'q'): ");
-//    input = Console.ReadLine();
-//    if (input == "q")
-//    {
-//        Console.WriteLine("Oto wyniki podanego pracownika: "); 
-//        break;        
-//    }
+while (true)
+{
+    Console.WriteLine("podaj kolejną ocenę pracownika (jeśli chcesz wyjść naciśnij 'q'): ");
+    var input = Console.ReadLine();
+    if (input == "q")
+    {
+        Console.WriteLine("oto wyniki podanego pracownika: ");
+        break;
+    }
 
-//    try
-//    {
-//        employee.AddGrade(input);
-//    }
-//    catch (Exception e)
-//    {
-//        Console.WriteLine($"Exception catched: {e.Message}");
-//    }
+    try
+    {
+        employee.AddGrade(input);
+    }
+    catch (Exception e)
+    {
+        Console.WriteLine($"exception catched: {e.Message}");
+    }
 
-//}
+}
 
-//var ststistics = employee.GetStatistics();
-//Console.WriteLine($"Average: {ststistics.Average}");
-//Console.WriteLine($"Min: {ststistics.Min}");
-//Console.WriteLine($"Max: {ststistics.Max}");
-//Console.WriteLine($"AverageLetter: {ststistics.AverageLetter}");
+var ststistics = employee.GetStatistics();
+Console.WriteLine($"average: {ststistics.Average}");
+Console.WriteLine($"min: {ststistics.Min}");
+Console.WriteLine($"max: {ststistics.Max}");
+Console.WriteLine($"averageletter: {ststistics.AverageLetter}");
